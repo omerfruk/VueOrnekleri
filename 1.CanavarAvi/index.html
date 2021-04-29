@@ -15,7 +15,7 @@
                 <h1 class="text-center">SEN</h1>
                 <div class="healthbar">
                     <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-
+                        {{player_health +"%"}}
                     </div>
                 </div>
             </div>
@@ -23,22 +23,22 @@
                 <h1 class="text-center">CANAVAR</h1>
                 <div class="healthbar">
                     <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-
+                        {{monster_health +"%"}}
                     </div>
                 </div>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls" v-if="!gameIsOn">
             <div class="small-12 columns">
-                <button id="start-game">YENİ OYUN</button>
+                <button @click="startGame"  id="start-game">YENİ OYUN</button>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls"  v-if="gameIsOn">
             <div class="small-12 columns">
-                <button id="attack">SALDIRI</button>
-                <button id="special-attack">ÖZEL SALDIRI</button>
-                <button id="heal">İLK YARDIM</button>
-                <button id="give-up">PES ET!</button>
+                <button @click="playerAttact" id="attack">SALDIRI</button>
+                <button @click="playerSpecialAttact" id="special-attack">ÖZEL SALDIRI</button>
+                <button @click="healUp" id="heal">İLK YARDIM</button>
+                <button @click="giveUp" id="give-up">PES ET!</button>
             </div>
         </section>
         <section class="row log">
