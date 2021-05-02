@@ -1,11 +1,12 @@
 <template>
-<div>
-  <p>bu cok güzel bir yapidir</p>
-</div>
+  <div class="col-md-2 card">
+      <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
+  name: "Product"
 }
 </script>
 
