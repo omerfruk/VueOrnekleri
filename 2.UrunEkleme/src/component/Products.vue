@@ -1,19 +1,19 @@
 <template>
   <div class="row product-container">
-    <Product>
-      <img class="card-img-top" src="/src/assets/default.png" alt="Card image cap">
+    <Product v-for="product in productList">
+      <img class="card-img-top" :src="product.selectedImage" :alt="product.title">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">{{ product.title }}</h5>
         <small>
-          <strong>Adet : </strong> 1
+          <strong>Adet : </strong> {{ product.count }}
         </small>
         <br>
         <small>
-          <strong>Fiyat : </strong> 10
+          <strong>Fiyat : </strong> {{ product.prise }}
         </small>
         <br>
         <small>
-          <strong>Tutar : </strong> 10
+          <strong>Tutar : </strong> {{ product.totalPrise }}
         </small>
       </div>
     </Product>
@@ -21,12 +21,29 @@
 </template>
 
 <script>
+import {eventBus} from "../main";
 import Product from "./Product";
 
 export default {
   components: {
     Product
   },
+  data() {
+    return {
+      productList: [],
+    }
+  },
+  created() {
+    eventBus.$on("productAdded", (pruduct) => {
+      if (this.product.length < 2) {
+        this.productList.push(pruduct);
+        eventBus.$emit("progresBarUpdate",this.productList.length);
+      } else {
+        alert("daga fazla kayit ekleyemezsin ");
+      }
+
+    });
+  }
 }
 </script>
 
