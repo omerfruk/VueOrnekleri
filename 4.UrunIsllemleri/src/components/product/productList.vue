@@ -23,7 +23,7 @@
             </tr>
             </tbody>
           </table>
-          <div class="alert alert-warning" v-else>
+          <div class="alert alert-warning">
             <strong>Henüz Burada Bir Kayıt Bulamadık</strong>
             <br>
             <small>Kayıt Eklemek için Ürün İşlemleri menüsünden yararlanabilirsiniz
@@ -36,9 +36,7 @@
 </template>
 
 <script>
-export default {
-  name: "productList"
-}
+
 </script>
 
 <style scoped>
