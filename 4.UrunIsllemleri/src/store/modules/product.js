@@ -21,10 +21,12 @@ const actions = {
     initApp({commit}){
        //Vue Resource islemleri
     },
-    saveProduct({commit},peyload){
-        Vue.http.post("https://urun-islemleri-7f6bd-default-rtdb.firebaseio.com/products.json",peyload)
+    saveProduct({commit,state},product){
+        Vue.http.post("https://urun-islemleri-7f6bd-default-rtdb.firebaseio.com/products.json",product)
             .then((response)=>{
-                console.log(response);
+                product.key=response.body.name;
+                commit("updateProductList", product);
+                console.log(state.products);
             })
     },
     sellProduct({commit},peyload){
