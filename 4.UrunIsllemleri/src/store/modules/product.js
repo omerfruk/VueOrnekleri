@@ -22,7 +22,7 @@ const actions = {
        //Vue Resource islemleri
     },
     saveProduct({commit},peyload){
-        Vue.http.post("https://fir-demo-project.firebaseio.com/products.json",peyload)
+        Vue.http.post("https://urun-islemleri-7f6bd-default-rtdb.firebaseio.com/products.json",peyload)
             .then((response)=>{
                 console.log(response);
             })
