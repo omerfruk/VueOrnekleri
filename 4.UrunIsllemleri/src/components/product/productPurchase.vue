@@ -32,19 +32,19 @@
 
 <script>
 export default {
-  data(){
-    return{
-      product : {
+  data() {
+    return {
+      product: {
         title: "",
         count: null,
-        price : null,
-        description :"",
+        price: null,
+        description: "",
       }
     }
   },
-  methods:{
+  methods: {
     saveProduct() {
-      this.$store.dispatch("saveProduct",this.product)
+      this.$store.dispatch("saveProduct", this.product)
     }
   }
 }
