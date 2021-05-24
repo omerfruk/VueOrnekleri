@@ -21,12 +21,19 @@ const actions = {
     initApp({commit}){
        //Vue Resource islemleri
     },
-    saveProduct({commit,state},product){
+    saveProduct({commit,state, dispatch},product){
         Vue.http.post("https://urun-islemleri-7f6bd-default-rtdb.firebaseio.com/products.json",product)
             .then((response)=>{
+                //ürün listeleme icin
                 product.key=response.body.name;
                 commit("updateProductList", product);
-                console.log(state.products);
+                //aliş satış islemleri icin
+                let tradeResult = {
+                    purchase: product.price,
+                    sale: 0,
+                    count: product.count
+                }
+                dispatch("setTradeResult",tradeResult )
             })
     },
     sellProduct({commit},peyload){
