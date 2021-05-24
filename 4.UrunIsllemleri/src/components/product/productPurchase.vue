@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div class="loading" :style="isLoading">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-6 offset-3 pt-3 card mt-5 shadow">
         <div class="card-body">
@@ -28,6 +34,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -39,8 +46,8 @@ export default {
         count: null,
         price: null,
         description: "",
-        saveButtonCliced: false,
-      }
+      },
+      saveButtonCliced: false,
     }
   },
   methods: {
@@ -57,6 +64,17 @@ export default {
         return false;
       }
     },
+    isLoading(){
+      if(this.saveButtonCliced){
+        return{
+          display :"block"
+        }
+      }else {
+        return {
+          display: "none"
+        }
+      }
+    }
   },
   beforeRouteLeave(to, from, next) {
     if ((this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length > 0)&& !this.saveButtonCliced) {
