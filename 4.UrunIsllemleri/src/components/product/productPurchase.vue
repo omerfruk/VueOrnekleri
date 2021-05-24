@@ -39,11 +39,13 @@ export default {
         count: null,
         price: null,
         description: "",
+        saveButtonCliced: false,
       }
     }
   },
   methods: {
     saveProduct() {
+      this.saveButtonCliced=true;
       this.$store.dispatch("saveProduct", this.product)
     }
   },
@@ -55,16 +57,16 @@ export default {
         return false;
       }
     },
-    beforeRouteLeave(to, from, next) {
-      if (this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length > 0) {
-        if (confirm("kaydedilmemiş veriler var çıkmak istiyormusunuz")) {
-          next();
-        } else {
-          next(false);
-        }
-      } else {
+  },
+  beforeRouteLeave(to, from, next) {
+    if ((this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length > 0)&& !this.saveButtonCliced) {
+      if (confirm("kaydedilmemiş veriler var çıkmak istiyormusunuz")) {
         next();
+      } else {
+        next(false);
       }
+    } else {
+      next();
     }
   }
 }
