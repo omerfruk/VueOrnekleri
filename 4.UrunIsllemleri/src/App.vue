@@ -1,9 +1,9 @@
 <template>
   <div>
     <header-bar></header-bar>
-    <transtition name="fade" mode="out-in">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
-    </transtition>
+    </transition>
     <footer-bar></footer-bar>
   </div>
 </template>
