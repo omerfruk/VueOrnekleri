@@ -23,7 +23,7 @@
                       class="form-control"></textarea>
           </div>
           <hr>
-          <button class="btn btn-primary" @click="saveProduct">Kaydet</button>
+          <button class="btn btn-primary" :disabled="!SaveEnabled" @click="saveProduct">Kaydet</button>
         </div>
       </div>
     </div>
@@ -45,6 +45,26 @@ export default {
   methods: {
     saveProduct() {
       this.$store.dispatch("saveProduct", this.product)
+    }
+  },
+  computed: {
+    SaveEnabled() {
+      if (this.product.title.length > 0 && this.product.count > 0 && this.product.price > 0 && this.product.description.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      if (this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length > 0) {
+        if (confirm("kaydedilmemiş veriler var çıkmak istiyormusunuz")) {
+          next();
+        } else {
+          next(false);
+        }
+      } else {
+        next();
+      }
     }
   }
 }
