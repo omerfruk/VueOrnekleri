@@ -13,25 +13,30 @@ import HeaderBar from "./components/share/header"
 import FooterBar from "./components/share/footer"
 
 export default {
-components:{
-  headerBar:HeaderBar,
-  footerBar:FooterBar,
-},
+  components: {
+    headerBar: HeaderBar,
+    footerBar: FooterBar,
+  },
   created() {
-  this.$store.dispatch("getTradeResult");
+    this.$store.dispatch("getTradeResult");
+    this.$store.dispatch("initApp");
   }
 }
 </script>
 
 <style>
-.fade-enter{
+.fade-enter {
   opacity: 0;
 }
-.fade-enter-active{
+
+.fade-enter-active {
   transition: opacity .3s ease-out;
 }
-.fade-leave{}
-.fade-leave-active{
+
+.fade-leave {
+}
+
+.fade-leave-active {
   transition: opacity .3s ease-out;
 }
 </style>
