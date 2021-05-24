@@ -49,8 +49,25 @@ const actions = {
                 router.replace("/")
             })
     },
-    sellProduct({commit}, peyload) {
+    sellProduct({commit, state, dispatch}, peyload) {
 
+        let product = state.products.filter(element => {
+            return element.key == peyload.key;
+        })
+        if (product) {
+            let totalCount = product[0].count - peyload.count;
+            Vue.http.patch("https://urun-islemleri-7f6bd-default-rtdb.firebaseio.com/products/" + peyload.key + ".json", {count: totalCount})
+                .then(response => {
+                    product[0].count = totalCount;
+                    let tradeResult = {
+                        purchase: 0,
+                        sale: product[0].price ,
+                        count: peyload.count
+                    }
+                    dispatch("setTradeResult", tradeResult)
+                    router.replace("/")
+                })
+        }
     }
 }
 
