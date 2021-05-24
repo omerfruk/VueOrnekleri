@@ -41,7 +41,7 @@
             <input type="text" v-model="product_count" class="form-control" placeholder="Ürün adetini giriniz..">
           </div>
           <hr>
-          <button @click="save" class="btn btn-primary">Kaydet</button>
+          <button @click="save" :disabled="!SaveEnabled" class="btn btn-primary">Kaydet</button>
         </div>
       </div>
     </div>
@@ -72,7 +72,14 @@ export default {
           display: "none"
         }
       }
-    }
+    },
+    SaveEnabled() {
+      if (this.selectedProduct!==null && this.product_count>0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     productSelected() {
