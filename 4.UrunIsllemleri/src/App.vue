@@ -14,7 +14,10 @@ export default {
 components:{
   headerBar:HeaderBar,
   footerBar:FooterBar,
-}
+},
+  created() {
+  this.$store.dispatch("getTradeResult");
+  }
 }
 </script>
 
