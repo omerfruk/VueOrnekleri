@@ -4,7 +4,7 @@ import axios from "axios";
 
 Vue.use(Vuex)
 
-const state = new Vuex.Store({
+export default new Vuex.Store({
     state: {
         token: "",
         fbAPIKey: "AIzaSyBonvrx4b1T728OWNd1VcG-qu8r_bhXguc"
