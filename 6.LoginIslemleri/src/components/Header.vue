@@ -19,6 +19,7 @@
   </nav>
 </template>
 <script>
+
   export default {
     methods: {
       logout() {
