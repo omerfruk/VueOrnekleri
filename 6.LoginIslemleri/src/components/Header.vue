@@ -23,12 +23,13 @@
   export default {
     methods: {
       logout() {
+        this.$store.dispatch("logout")
       }
     },
     computed: {
       logoutClass() {
         return {
-          'd-none': false
+          'd-none': !this.$store.getters.isAuthenticated
         }
       }
     }
