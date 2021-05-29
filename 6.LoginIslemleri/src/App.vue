@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-      <HomePage />
+    <router-view/>
   </div>
 </template>
 <script>
@@ -12,9 +12,6 @@
   export default {
     components: {
         Header,
-        Auth,
-        Homepage,
-        About
     },
   }
 </script>
